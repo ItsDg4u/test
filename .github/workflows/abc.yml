@@ -1,0 +1,21 @@
+name: Initial Access to AWS
+
+on: workflow_dispatch
+
+permissions:
+ id-token: write
+ contents: read
+
+jobs:
+ get-secret:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Configure AWS Credentials
+       uses: aws-actions/configure-aws-credentials@v3
+       with:
+         role-to-assume: arn:aws:iam::691903504411:role/github-deployment-role
+         aws-region: us-west-2
+
+     - name: Retrieve secret
+       run: |
+         aws secretsmanager get-secret-value --secret-id internal/secrets/id --region us-west-2
