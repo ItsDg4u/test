@@ -13,9 +13,9 @@ jobs:
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v3
        with:
-         role-to-assume: arn:aws:iam::691903504411:role/github-deployment-role
+         role-to-assume: arn:aws:iam::170974506515:role/github-deployment-role
          aws-region: us-west-2
 
      - name: Retrieve secret
        run: |
-         aws secretsmanager get-secret-value --secret-id internal/secrets/id --region us-west-2
+         aws secretsmanager get-secret-value --secret-id internal/secrets/id-v2 --region us-west-2
